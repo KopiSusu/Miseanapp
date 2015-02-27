@@ -1,0 +1,25 @@
+<h1>Mise En App!</h1>
+<%= link_to "Submit a recipe!", new_recipe_path %>
+<hr>
+<% @recipes.each do |recipe| %>
+
+  <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
+
+  <% recipe.ingredients.each do |ingredient| %>
+    <p><%= ingredient.name %></p>
+    <% for amount in ingredient.amounts %>
+    <ul>
+      <p><%= amount.quantity %></p>
+    </ul>
+    <% end %>
+  <%end%>
+
+  <ol>
+  <% recipe.steps.each do |step| %>
+    <li><%= step.instruction %></li>
+  <%end%>
+  </ol>
+  
+  <hr>
+
+<% end %>

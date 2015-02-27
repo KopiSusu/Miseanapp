@@ -1,0 +1,23 @@
+<%= form_for @recipe do |f| %>
+
+  <div>
+    Title:<br>
+    <%= f.text_field :title %>
+  </div>
+  <br>
+
+  <%= f.fields_for :ingredients do |builder| %>
+    <%= render "ingredient_fields", :f => builder %>
+  <% end %>
+  <p><%= link_to_add_fields "Add Ingredient", f, :ingredients %></p>
+  
+  <%= f.fields_for :steps do |builder| %>
+    <%= render "step_fields", :f => builder %>
+  <% end %>
+  <p><%= link_to_add_fields "Add Step", f, :steps %></p>
+
+  <div>
+    <%= f.submit :Submit %> 
+  </div>
+
+<% end %>
