@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225045913) do
+ActiveRecord::Schema.define(version: 20150306202227) do
 
   create_table "amounts", force: :cascade do |t|
     t.integer  "ingredient_id"
-    t.integer  "quantity"
+    t.float    "quantity"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -39,7 +39,15 @@ ActiveRecord::Schema.define(version: 20150225045913) do
   add_index "joinirtables", ["recipe_id"], name: "index_joinirtables_on_recipe_id"
 
   create_table "recipes", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "recipes", ["user_id"], name: "index_recipes_on_user_id"
+
+  create_table "scrapers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,5 +60,14 @@ ActiveRecord::Schema.define(version: 20150225045913) do
   end
 
   add_index "steps", ["recipe_id"], name: "index_steps_on_recipe_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "firstname"
+    t.string   "lastname"
+  end
 
 end

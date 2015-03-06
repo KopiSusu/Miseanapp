@@ -1,4 +1,5 @@
 class Recipe < ActiveRecord::Base
+  belongs_to :user
 
   has_many :steps, dependent: :destroy
 
@@ -10,5 +11,6 @@ class Recipe < ActiveRecord::Base
 
   validates :title,
     presence: true
+
 
 end

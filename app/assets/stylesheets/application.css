@@ -1,15 +1,65 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#main {
+  min-height: 100%; 
+  background: -webkit-radial-gradient(circle, #CC1100, #660000);
+}
+
+.title {
+  margin: 0;
+}
+  #index-title {
+    margin: 0;
+    padding: 2%;
+    background: white;
+    width: 25%;
+    text-align: center;
+    position: absolute;
+    margin-left: 36.5%;
+    top: 20%;
+    font-size: 3em;
+    font-family: 'Lobster Two', cursive;
+    color: #555;
+    font-weight: bold;
+  }
+#text-tag input {
+  width: 20%;
+  padding: 0.5% 1% 0.5% 1%;
+  margin-left: 40%;
+  top: 40%;
+  position: absolute;
+  font-size: 2em;
+  text-align: center;
+}
+
+.wrapper {
+  position: absolute;
+  width: 100%;
+  top: 55%;
+}
+  .list {
+    width: 15%;
+    margin: 0.5%;
+    padding: 0.5%;
+    background: white;
+    margin-left: 43.5%;
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: normal;
+    font-family: 'Lobster Two', cursive;
+  }
+  .submit {
+    width: 16%;
+    margin: 0.2%;
+    padding: 0.5%;
+    background: white;
+    margin-left: 43.5%;
+    font-size: 1.5em;
+    text-align: center;
+    border: none;
+    font-weight: normal;
+    font-family: 'Lobster Two', cursive;
+  }

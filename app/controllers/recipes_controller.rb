@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    @recipes = Recipe.all
   end
 
   def new
@@ -32,12 +32,36 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
+    if params[:url]
+      @scraper = Scraper.new(params[:url])
+      @title = @scraper.get_properties('#headline > h1:first-child')[0]
+      @recipe = Recipe.new(title: @title)
 
-    if @recipe.save
+      @ingredients = @scraper.get_properties('.ingredient')
+      for ingredient in @ingredients do
+        split = ingredient.rpartition(/[0-9]/)
+        amount = split[0] + split[1]
+        amounts = amount.split(" ")
+        amount_integer = amounts[1].to_r.to_f + amounts[0].to_r.to_f 
+        type = split[2]
+        @recipe.ingredients << Ingredient.new(name: type)
+        @recipe.ingredients.last.amounts << Amount.new(quantity: amount_integer)
+      end
+      # problem now is that this fucks up when there is 2 sets of numbers in an ingredient, for instance when someone says "2 1/4 teaspons sugar (around 1 tablesoon)"
+
+      @steps = @scraper.get_properties('#preparation > p')
+      for step in @steps do
+        @recipe.steps << Step.new(instruction: step)
+      end
+      @recipe.save
       redirect_to recipes_path
     else
-      render :new
+      @recipe = Recipe.new(recipe_params)
+      if @recipe.save
+        redirect_to recipes_path
+      else
+        render :new
+      end
     end
   end
 

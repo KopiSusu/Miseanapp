@@ -2,7 +2,7 @@ class CreateAmounts < ActiveRecord::Migration
   def change
     create_table :amounts do |t|
       t.references :ingredient, index: true
-      t.integer :quantity
+      t.float :quantity
 
       t.timestamps null: false
     end

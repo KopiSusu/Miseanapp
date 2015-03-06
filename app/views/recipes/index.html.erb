@@ -1,12 +1,16 @@
 <h1>Mise En App!</h1>
 <%= link_to "Submit a recipe!", new_recipe_path %>
+  <%= form_for recipes_path, :html => { :id => 'form' }, :method => 'post' do %>
+      <li><a id='search'>Recipe URL</a></li> 
+      <li id='text'><%= text_field_tag :url%></li>
+  <% end %> 
 <hr>
 <% @recipes.each do |recipe| %>
 
   <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
 
   <% recipe.ingredients.each do |ingredient| %>
-    <p><%= ingredient.name %></p>
+    <p contenteditable="true"><%= ingredient.name %></p>
     <% for amount in ingredient.amounts %>
     <ul>
       <p><%= amount.quantity %></p>
@@ -16,7 +20,7 @@
 
   <ol>
   <% recipe.steps.each do |step| %>
-    <li><%= step.instruction %></li>
+    <li contenteditable="true"><%= step.instruction %></li>
   <%end%>
   </ol>
   

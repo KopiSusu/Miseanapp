@@ -1,0 +1,12 @@
+<section class='container' id='main' >
+<%= link_to "Submit a recipe!", new_recipe_path %>
+  <h1 class='title' id='index-title'>Mise En App!</h1>
+  <%= form_for recipes_path, :html => { :id => 'form' }, :method => 'post' do %>
+      <div id='text-tag'><%= text_field_tag :url, nil, placeholder: "Recipe URL"%></div>
+      <div class='wrapper'>
+        <%= submit_tag "Add Recipe", class: "submit"%>
+        <div class='list'>Grocery List</div>
+        <div class='list'>My Recipes</div>
+      </div>
+  <% end %> 
+</section>
