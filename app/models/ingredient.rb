@@ -4,5 +4,5 @@ class Ingredient < ActiveRecord::Base
   has_many :recipes, through: :joinirtables
 
   has_many :amounts, dependent: :destroy
-  accepts_nested_attributes_for :amounts, :reject_if => lambda { |a| a[:quantity].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :amounts, :reject_if => lambda { |a| a[:quantity].blank? }, :allow_destroy => true, update_only: true
 end

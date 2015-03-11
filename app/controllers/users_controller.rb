@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id # auto log in
-      redirect_to movies_path
+      redirect_to recipes_path
     else
       render :new
     end

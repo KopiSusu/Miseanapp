@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to movies_path
+      redirect_to recipes_path
     else
       render :new
     end
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to movies_path, notice: "Adios!"
+    redirect_to recipes_path, notice: "Adios!"
   end
 
 end

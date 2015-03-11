@@ -6,8 +6,8 @@ class Recipe < ActiveRecord::Base
   has_many :joinirtables
   has_many :ingredients, through: :joinirtables
 
-  accepts_nested_attributes_for :ingredients, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
-  accepts_nested_attributes_for :steps, :reject_if => lambda { |a| a[:instruction].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :ingredients, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true, update_only: true
+  accepts_nested_attributes_for :steps, :reject_if => lambda { |a| a[:instruction].blank? }, :allow_destroy => true, update_only: true
 
   validates :title,
     presence: true

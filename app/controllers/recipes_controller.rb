@@ -1,11 +1,13 @@
 class RecipesController < ApplicationController
 
+  before_filter :restrict_access
+
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(user_id: current_user.id)
   end
 
   def show
-    @recipes = Recipe.all
+    @recipe = Recipe.find(params[:id])
   end
 
   def new
@@ -24,7 +26,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
 
-    if @recipe.update_attributes(recipe_params)
+    if @recipe.update_attributes(update_recipe_params)
       redirect_to recipe_path(@recipe)
     else
       render :edit
@@ -53,8 +55,9 @@ class RecipesController < ApplicationController
       for step in @steps do
         @recipe.steps << Step.new(instruction: step)
       end
+      @recipe.user_id = current_user.id
       @recipe.save
-      redirect_to recipes_path
+      redirect_to edit_recipe_path(@recipe.id)
     else
       @recipe = Recipe.new(recipe_params)
       if @recipe.save
@@ -76,6 +79,12 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(
       :title, :picture_url, steps_attributes: [:instruction], ingredients_attributes: [ :name, amounts_attributes: [:quantity]]
+    )
+  end
+
+  def update_recipe_params
+    params.require(:recipe).permit(
+      :title, :picture_url
     )
   end
 
