@@ -41,15 +41,15 @@ class RecipesController < ApplicationController
 
       @ingredients = @scraper.get_properties('.ingredient')
       for ingredient in @ingredients do
-        split = ingredient.rpartition(/[0-9]/)
-        amount = split[0] + split[1]
+        amount = ingredient.split(/[a-zA-Z]/)[0]
         amounts = amount.split(" ")
         amount_integer = amounts[1].to_r.to_f + amounts[0].to_r.to_f 
-        type = split[2]
-        @recipe.ingredients << Ingredient.new(name: type)
-        @recipe.ingredients.last.amounts << Amount.new(quantity: amount_integer)
+        ingredient.slice! amount
+        @recipe.ingredients << Ingredient.new(name: ingredient)
+        if amount_integer > 0
+          @recipe.ingredients.last.amounts << Amount.new(quantity: amount_integer)
+        end
       end
-      # problem now is that this fucks up when there is 2 sets of numbers in an ingredient, for instance when someone says "2 1/4 teaspons sugar (around 1 tablesoon)"
 
       @steps = @scraper.get_properties('#preparation > p')
       for step in @steps do

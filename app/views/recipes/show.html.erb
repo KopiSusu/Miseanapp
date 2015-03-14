@@ -2,19 +2,22 @@
 
 <h2><%= link_to @recipe.title, recipe_path(@recipe) %></h2>
 
+<h3>Ingredients</h3>
 <% @recipe.ingredients.each do |ingredient| %>
-  <p contenteditable="true"><%= ingredient.name %></p>
-  <% for amount in ingredient.amounts %>
-  <ul>
-    <p><%= amount.quantity %></p>
+  <ul contenteditable="true"> 
+    <% for amount in ingredient.amounts %>
+      <%= amount.quantity %> 
+    <% end %>
+    <%= ingredient.name %>
   </ul>
-  <% end %>
 <%end%>
 
+<hr>
+
+<h3>Instructions</h3>
 <ol>
 <% @recipe.steps.each do |step| %>
   <li contenteditable="true"><%= step.instruction %></li>
 <%end%>
 </ol>
 
-<hr>
