@@ -5,6 +5,16 @@
     <%= f.text_field :title %>
   </div>
   <br>
+  <div>
+    Serving:<br>
+    <%= f.number_field :serving %>
+  </div>
+  <br>
+  <div>
+    Photo URL:<br>
+    <%= f.text_field :photo %>
+  </div>
+  <br>
 
   <%= f.fields_for :ingredients do |builder| %>
     <%= render "ingredient_fields", :f => builder %>

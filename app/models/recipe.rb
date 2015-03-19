@@ -12,5 +12,11 @@ class Recipe < ActiveRecord::Base
   validates :title,
     presence: true
 
-
+  def current_serving(serving)
+    if serving
+      return serving
+    else 
+      self.serving
+    end
+  end
 end

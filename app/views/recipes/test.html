@@ -1,12 +1,26 @@
-<section class='container' id='main' >
-<%= link_to "Submit a recipe!", new_recipe_path %>
-  <h1 class='title' id='index-title'>Mise En App!</h1>
-  <%= form_for recipes_path, :html => { :id => 'form' }, :method => 'post' do %>
-      <div id='text-tag'><%= text_field_tag :url, nil, placeholder: "Recipe URL"%></div>
-      <div class='wrapper'>
-        <%= submit_tag "Add Recipe", class: "submit"%>
-        <div class='list'>Grocery List</div>
-        <div class='list'>My Recipes</div>
-      </div>
-  <% end %> 
-</section>
+<%= link_to "Back to all recipes", user_path(current_user.id) %>
+
+<h2><%= link_to @recipe.title, recipe_path(@recipe) %></h2>
+<%= form_for recipes_path, :html => { :id => 'form' }, :method => 'get' do %>
+    <ul> Serving: <%= number_field_tag :serving, @recipe.serving, in: 1...20%></ul>
+<% end %> 
+<p><%= @recipe.serving %></p>
+<h3>Ingredients</h3>
+<% @recipe.ingredients.each do |ingredient| %>
+  <ul contenteditable="true"> 
+    <% for amount in ingredient.amounts %>
+      <%= amount.servingsize(params[:serving])[0] %><% if amount.servingsize(params[:serving])[1] > 1 %>/<%= amount.servingsize(params[:serving])[1] %>
+      <% end %>
+    <% end %>
+    <%= ingredient.name %>
+  </ul>
+<%end%>
+
+<hr>
+
+<h3>Instructions</h3>
+<ol>
+<% @recipe.steps.each do |step| %>
+  <li contenteditable="true"><%= step.instruction %></li>
+<%end%>
+</ol>

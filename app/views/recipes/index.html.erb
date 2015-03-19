@@ -1,33 +1,8 @@
 <h1>Mise En App!</h1>
-<%= link_to "Submit a recipe!", new_recipe_path %>
+<%= link_to "Make your own recipe!", new_recipe_path %>
+<%= link_to "Your Recipes!", user_path(current_user.id) %>
   <%= form_for recipes_path, :html => { :id => 'form' }, :method => 'post' do %>
       <li><a id='search'>Recipe URL</a></li> 
       <li id='text'><%= text_field_tag :url%></li>
   <% end %> 
 <hr>
-<% @recipes.each do |recipe| %>
-
-  <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
-
-  <h3>Ingredients</h3>
-
-  <% recipe.ingredients.each do |ingredient| %>
-    <ul contenteditable="true"> 
-      <% for amount in ingredient.amounts %>
-        <%= amount.quantity %> 
-      <% end %>
-      <%= ingredient.name %>
-    </ul>
-  <%end%>
-
-  <h3>Instructions</h3>
-
-  <ol>
-  <% recipe.steps.each do |step| %>
-    <li contenteditable="true"><%= step.instruction %></li>
-  <%end%>
-  </ol>
-  
-  <hr>
-
-<% end %>

@@ -34,16 +34,24 @@ class RecipesController < ApplicationController
   end
 
   def create
-    if params[:url]
-      @scraper = Scraper.new(params[:url])
-      @title = @scraper.get_properties('#headline > h1:first-child')[0]
-      @recipe = Recipe.new(title: @title)
+    if params[:url].blank?
+      redirect_to new_recipe_path
+    elsif params[:url]
+      scraper = Scraper.new(params[:url])
+      title = scraper.get_properties('#headline > h1:first-child')[0]
+      if scraper.get_properties('.summary_data > span')[0] == nil
+        serving = 1
+      else
+        serving = scraper.get_properties('.summary_data > span')[0].scan(/\d+/).first.to_r.to_f 
+      end
+      photourl = scraper.get_img
+      @recipe = Recipe.new(title: title, serving: serving, photo: photourl)
 
-      @ingredients = @scraper.get_properties('.ingredient')
-      for ingredient in @ingredients do
+      ingredients = scraper.get_properties('.ingredient')
+      for ingredient in ingredients do
         amount = ingredient.split(/[a-zA-Z]/)[0]
         amounts = amount.split(" ")
-        amount_integer = amounts[1].to_r.to_f + amounts[0].to_r.to_f 
+        amount_integer = amounts[1].to_r.to_f + amounts[0].to_r.to_f
         ingredient.slice! amount
         @recipe.ingredients << Ingredient.new(name: ingredient)
         if amount_integer > 0
@@ -51,8 +59,8 @@ class RecipesController < ApplicationController
         end
       end
 
-      @steps = @scraper.get_properties('#preparation > p')
-      for step in @steps do
+      steps = scraper.get_properties('#preparation > p')
+      for step in steps do
         @recipe.steps << Step.new(instruction: step)
       end
       @recipe.user_id = current_user.id
@@ -89,4 +97,5 @@ class RecipesController < ApplicationController
   end
 
 end
+
 

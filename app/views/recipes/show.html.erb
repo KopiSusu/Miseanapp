@@ -1,12 +1,18 @@
-<%= link_to "Back to all recipes", recipes_path %>
+<%= link_to "Back to all recipes", user_path(current_user.id) %>
 
 <h2><%= link_to @recipe.title, recipe_path(@recipe) %></h2>
+
+<%= form_for recipes_path, :html => { :id => 'form' }, :method => 'get' do %>
+    <ul> Serving: <%= number_field_tag :serving, @recipe.current_serving(params[:serving]), in: 1...20%></ul>
+<% end %> 
+
+<%= image_tag @recipe.photo %>
 
 <h3>Ingredients</h3>
 <% @recipe.ingredients.each do |ingredient| %>
   <ul contenteditable="true"> 
     <% for amount in ingredient.amounts %>
-      <%= amount.quantity %> 
+      <%= amount.servingsize(params[:serving]) %>
     <% end %>
     <%= ingredient.name %>
   </ul>
@@ -20,4 +26,5 @@
   <li contenteditable="true"><%= step.instruction %></li>
 <%end%>
 </ol>
+
 

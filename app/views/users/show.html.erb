@@ -1,2 +1,31 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>Mise En App!</h1>
+<%= link_to "Submit a recipe!", recipes_path %>
+<hr>
+<% @recipes.each do |recipe| %>
+
+  <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
+  <ul> Intended Serving: <%=recipe.serving %></ul>
+  <%= image_tag recipe.photo %>
+
+  <h3>Ingredients</h3>
+
+  <% recipe.ingredients.each do |ingredient| %>
+    <ul contenteditable="true"> 
+      <% for amount in ingredient.amounts %>
+        <%= amount.servingsize(params[:serving]) %>
+      <% end %>
+      <%= ingredient.name %>
+    </ul>
+  <%end%>
+
+  <h3>Instructions</h3>
+
+  <ol>
+  <% recipe.steps.each do |step| %>
+    <li contenteditable="true"><%= step.instruction %></li>
+  <%end%>
+  </ol>
+  
+  <hr>
+
+<% end %>

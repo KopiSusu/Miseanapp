@@ -15,6 +15,10 @@ class Scraper
     end
   end
 
+  def get_img
+    src = 'http://www.epicurious.com' + data.at('.photo')['src'].to_s
+  end
+
   def data
     @data ||= Nokogiri::HTML(open(url))
   end

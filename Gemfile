@@ -31,6 +31,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem "paperclip", "~> 4.2"
+
+gem 'fraction', '~> 0.3.2'
 
 # nokogiri
 gem 'nokogiri'
