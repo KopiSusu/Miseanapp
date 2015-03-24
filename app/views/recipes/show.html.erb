@@ -19,11 +19,11 @@
 <section class='wrap'>
 
   <h3 class='inline'>Ingredients</h3> 
-  
+  <div class='inline'>
   <%= form_for recipes_path, :html => { :id => 'form' }, :method => 'get' do %>
     <ul class='inline'> <em>Serving:</em> <%= number_field_tag :serving, @recipe.current_serving(params[:serving]), in: 1...101%></ul>
   <% end %> 
-
+  </div>
   <hr>
   <% @recipe.ingredients.each do |ingredient| %>
     <ul> 
