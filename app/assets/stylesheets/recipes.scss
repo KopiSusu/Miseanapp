@@ -1,3 +1,53 @@
 // Place all the styles related to the recipes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.inline {
+  display: inline-block;
+}
+
+/* show page */
+.topbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 14%;
+  z-index: -1;
+  border-bottom: 1px solid #ef4923;
+  text-align: right;
+}
+
+.title {
+  text-align: center;
+  border: 1px solid #ef4923;
+  width: 44%;
+  margin-left: 28%;
+  font-size: 2em;
+  padding: 2% 0% 2% 0%;
+  background: white;
+}
+
+.image {
+  float: right;
+  margin: 0px 0px -60px;
+  border: 10px solid white;
+  top: -55px;
+  position: relative;
+}
+
+.wrap {
+  display: inline-block;
+  width: 47%;
+  float: left;
+  padding: 0% 0% 0% 2%;
+  h3 {
+    color: #83B838;
+  }
+}
+
+/* edit */
+.input_ingredient {
+  width: 100%;
+}
+
+
+

@@ -5,7 +5,7 @@
 
   <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
   <ul> Intended Serving: <%=recipe.serving %></ul>
-  <%= image_tag recipe.photo %>
+  <%= image_tag recipe.photo.url(:med) %>
 
   <h3>Ingredients</h3>
 

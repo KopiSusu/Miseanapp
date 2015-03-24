@@ -1,30 +1,41 @@
-<%= link_to "Back to all recipes", user_path(current_user.id) %>
+<div class='topbar'></div>
+<h2 class='title'><%= @recipe.title %></h2>
 
-<h2><%= link_to @recipe.title, recipe_path(@recipe) %></h2>
 
-<%= form_for recipes_path, :html => { :id => 'form' }, :method => 'get' do %>
-    <ul> Serving: <%= number_field_tag :serving, @recipe.current_serving(params[:serving]), in: 1...20%></ul>
-<% end %> 
+<section class='wrap'>
+  <%= image_tag @recipe.photo.url(:med), :class => "recipe_preview image" %>
 
-<%= image_tag @recipe.photo %>
+    <h3>Instructions</h3>
+    <ol>
+    <% @recipe.steps.each do |step| %>
+      <li><%= step.instruction %></li>
+    <%end%>
 
-<h3>Ingredients</h3>
-<% @recipe.ingredients.each do |ingredient| %>
-  <ul contenteditable="true"> 
-    <% for amount in ingredient.amounts %>
-      <%= amount.servingsize(params[:serving]) %>
-    <% end %>
-    <%= ingredient.name %>
-  </ul>
-<%end%>
+    <hr>
+    <%= link_to "Delete Recipe", recipe_path(@recipe), method: :delete, confirm: "You sure?" %> | <%= link_to "Back to all recipes", user_path(current_user.id) %>
+    </ol>
+</section>
 
-<hr>
+<section class='wrap'>
 
-<h3>Instructions</h3>
-<ol>
-<% @recipe.steps.each do |step| %>
-  <li contenteditable="true"><%= step.instruction %></li>
-<%end%>
-</ol>
+  <h3 class='inline'>Ingredients</h3> 
+  
+  <%= form_for recipes_path, :html => { :id => 'form' }, :method => 'get' do %>
+    <ul class='inline'> <em>Serving:</em> <%= number_field_tag :serving, @recipe.current_serving(params[:serving]), in: 1...101%></ul>
+  <% end %> 
+
+  <hr>
+  <% @recipe.ingredients.each do |ingredient| %>
+    <ul> 
+      <% for amount in ingredient.amounts %>
+        <%= amount.servingsize(params[:serving]) %>
+      <% end %>
+      <%= ingredient.name %>
+    </ul>
+  <%end%>
+
+</section>
+
+
 
 

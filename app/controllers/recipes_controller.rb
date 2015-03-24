@@ -20,7 +20,11 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @file_found = true
     @recipe = Recipe.find(params[:id])
+    if @recipe.photo == nil
+      @file_found = true
+    end
   end
 
   def update
@@ -45,7 +49,9 @@ class RecipesController < ApplicationController
         serving = scraper.get_properties('.summary_data > span')[0].scan(/\d+/).first.to_r.to_f 
       end
       photourl = scraper.get_img
-      @recipe = Recipe.new(title: title, serving: serving, photo: photourl)
+      @recipe = Recipe.new(title: title, serving: serving)
+      @recipe.picture_from_url(photourl)
+      # @recipe.photo = photourl
 
       ingredients = scraper.get_properties('.ingredient')
       for ingredient in ingredients do
@@ -86,13 +92,13 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(
-      :title, :picture_url, steps_attributes: [:instruction], ingredients_attributes: [ :name, amounts_attributes: [:quantity]]
+      :title, steps_attributes: [:instruction], ingredients_attributes: [ :name, amounts_attributes: [:quantity]]
     )
   end
 
   def update_recipe_params
     params.require(:recipe).permit(
-      :title, :picture_url
+      :title, :photo, :serving
     )
   end
 
