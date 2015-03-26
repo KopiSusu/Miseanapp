@@ -21,13 +21,32 @@ html, body {
   color: #444;
 }
 
+a {
+  text-decoration: none;
+}
 /** { margin: 0; padding: 0; }*/
 
 article, aside, figure, footer, header, hgroup,
 menu, nav, section { display: block; }
 
 input, textarea {
-   border: none;
+   /*border: none;*/
   color: #444;
   font: 15px/1.8 'PT Sans', Arial, sans-serif;
+}
+
+.inline {
+  display: inline-block;
+}
+
+/* resets */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }

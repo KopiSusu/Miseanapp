@@ -1,34 +1,60 @@
-<h1>Sign Up</h1>
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div>
-      <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+<section class='wrapper'>
+
+  <div class='devide'>
+    <h1> Mise En App! </h1>
+    <hr>
+    <h2>Sign Up</h2>
+    <%= form_for @user do |f| %>
+      <% if @user.errors.any? %>
+        <div>
+          <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div>
+        <%= f.label "email" %><br>
+        <%= f.text_field "email" %>
+      </div>
+      <div>
+        <%= f.label "firstname", "First Name" %><br>
+        <%= f.text_field "firstname" %>
+      </div>
+      <div>
+        <%= f.label "lastname", "Last Name" %><br>
+        <%= f.text_field "lastname" %>
+      </div>
+      <div>
+        <%= f.label "password" %><br>
+        <%= f.password_field "password" %>
+      </div>
+      <div>
+        <%= f.label "password_confirmation" %><br>
+        <%= f.password_field "password_confirmation" %>
+      </div>
+      <div><%= f.submit "Submit" %></div>
+    <% end %>
+    <%= link_to "Log In", new_session_path %>
+  </div>
+
+  <div class='devide'>
+    <h2>Example!</h2>
+    <div class='inside'>
+      <div class='examples'>
+        <p> Step 1: Find the recipe you want at www.epicurious.com </p>
+        <img src="<%= asset_path( 'rsz_example1.png' ) %>"/>
+      </div>
+      <div class='examples'>
+        <p> Step 3: Save the recipe and edit if you want! </p>
+        <img src="<%= asset_path( 'rsz_example3.png' ) %>"/>
+      </div>
+      <div class='examples'>
+        <p> Step 2: Copy the recipe URL and paste it into Mise En Ap! </p>
+        <img src="<%= asset_path( 'rsz_example2.png' ) %>"/>
+      </div>
     </div>
-  <% end %>
-  <div>
-    <%= f.label "email" %><br>
-    <%= f.text_field "email" %>
   </div>
-  <div>
-    <%= f.label "firstname", "First Name" %><br>
-    <%= f.text_field "firstname" %>
-  </div>
-  <div>
-    <%= f.label "lastname", "Last Name" %><br>
-    <%= f.text_field "lastname" %>
-  </div>
-  <div>
-    <%= f.label "password" %><br>
-    <%= f.password_field "password" %>
-  </div>
-  <div>
-    <%= f.label "password_confirmation" %><br>
-    <%= f.password_field "password_confirmation" %>
-  </div>
-  <div><%= f.submit "Submit" %></div>
-<% end %>
+</section>

@@ -3,7 +3,7 @@
 
 
 <section class='wrap'>
-  <%= image_tag @recipe.photo.url(:med), :class => "recipe_preview image" %>
+  <%= image_tag @recipe.photo.url(:med), :class => "image" %>
 
     <h3>Instructions</h3>
     <ol>
@@ -12,7 +12,7 @@
     <%end%>
 
     <hr>
-    <%= link_to "Delete Recipe", recipe_path(@recipe), method: :delete, confirm: "You sure?" %> | <%= link_to "Back to all recipes", user_path(current_user.id) %>
+    <%= link_to "Delete Recipe", recipe_path(@recipe), method: :delete, confirm: "You sure?" %> | <%= link_to "Back to all recipes", user_path(current_user.id) %> | <%= link_to "edit", edit_recipe_path(@recipe) %>
     </ol>
 </section>
 
@@ -21,7 +21,7 @@
   <h3 class='inline'>Ingredients</h3> 
   <div class='inline'>
   <%= form_for recipes_path, :html => { :id => 'form' }, :method => 'get' do %>
-    <ul class='inline'> <em>Serving:</em> <%= number_field_tag :serving, @recipe.current_serving(params[:serving]), in: 1...101%></ul>
+    <ul class='inline'> <em>Serving|Yield:</em> <%= number_field_tag :serving, @recipe.current_serving(params[:serving]), in: 1...101%></ul>
   <% end %> 
   </div>
   <hr>

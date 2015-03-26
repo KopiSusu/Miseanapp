@@ -1,12 +1,38 @@
-<h1>Log In</h1>
-<%= form_tag sessions_path do %>
-  <div>
-    <%= label_tag "email" %><br/>
-    <%= text_field_tag "email" %>
+<section class='wrapper'>
+
+  <div class='devide'>
+    <h1> Mise En App! </h1>
+    <hr>
+    <h2>Log In</h2>
+    <%= form_tag sessions_path do %>
+      <div>
+        <%= label_tag "email" %><br/>
+        <%= text_field_tag "email" %>
+      </div>
+      <div>
+        <%= label_tag :password %><br/>
+        <%= password_field_tag :password %>
+      </div>
+      <div><%= submit_tag "Log In" %></div>
+    <% end %>
+    <%= link_to "Sign Up", new_user_path %>
   </div>
-  <div>
-    <%= label_tag :password %><br/>
-    <%= password_field_tag :password %>
+
+  <div class='devide'>
+    <h2>Save a recipe!</h2>
+    <div class='inside'>
+      <div class='examples'>
+        <p> Step 1: Find the recipe you want at www.epicurious.com </p>
+        <img src="<%= asset_path( 'rsz_example1.png' ) %>"/>
+      </div>
+      <div class='examples'>
+        <p> Step 3: Save the recipe and edit if you want! </p>
+        <img src="<%= asset_path( 'rsz_example3.png' ) %>"/>
+      </div>
+      <div class='examples'>
+        <p> Step 2: Copy the recipe URL and paste it into Mise En Ap! </p>
+        <img src="<%= asset_path( 'rsz_example2.png' ) %>"/>
+      </div>
+    </div>
   </div>
-  <div><%= submit_tag "Log In" %></div>
-<% end %>
+</section>

@@ -8,7 +8,7 @@
   <section class='wrap'>
     Photo:<br>
     <% if @file_found == true %>
-      <%= image_tag @recipe.photo.url(:med), :class => "recipe_preview image" %> <br>
+      <%= image_tag @recipe.photo.url(:med), :class => "image" %> <br>
       Replace Image: <%= f.file_field :photo %>
     <% else %>
       <%= f.file_field :photo %>
@@ -29,10 +29,10 @@
     </ul>
 
   <hr>
-    <%= f.fields_for :ingredients do |builder| %>
-      <%= render "ingredient_fields", :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Add Ingredient", f, :ingredients %></p>
+      <%= f.fields_for :ingredients do |builder| %>
+        <%= render "ingredient_fields", :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Add Ingredient", f, :ingredients %></p>
   </section>
 
 

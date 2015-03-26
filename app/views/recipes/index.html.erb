@@ -1,8 +1,15 @@
-<h1>Mise En App!</h1>
-<%= link_to "Make your own recipe!", new_recipe_path %>
-<%= link_to "Your Recipes!", user_path(current_user.id) %>
-  <%= form_for recipes_path, :html => { :id => 'form' }, :method => 'post' do %>
-      <li><a id='search'>Recipe URL</a></li> 
-      <li id='text'><%= text_field_tag :url%></li>
-  <% end %> 
-<hr>
+<section class='index'>
+
+  <img src="<%= asset_path( 'main-logo.jpg' ) %>"/>
+  <div class='index-links'>
+    <%= form_for recipes_path, :html => { :id => 'form' }, :method => 'post' do %>
+        <br>
+        <p><%= text_field_tag :url, nil, placeholder: "Paste recipe URL here!" %></p>
+    <% end %> 
+    <div class='lower-links'>
+      <p><a class='recipe-submit'>Submit recipe!</a></p>
+      <p><%= link_to "Make your own recipe!", new_recipe_path %></p>
+      <p><%= link_to "Submit recipe!", user_path(current_user.id) %></p>
+    </div>
+  </div>
+</section>

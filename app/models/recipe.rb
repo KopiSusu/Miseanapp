@@ -30,5 +30,13 @@ class Recipe < ActiveRecord::Base
     self.photo = URI.parse(url)
   end
 
+  def self.search(search)
+    if search
+      where('title LIKE :search' , {:search => "%#{search}%"})
+    else
+      find(:all)
+    end
+  end
+
 end
 

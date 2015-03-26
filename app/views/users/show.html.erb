@@ -1,31 +1,22 @@
-<h1>Mise En App!</h1>
-<%= link_to "Submit a recipe!", recipes_path %>
-<hr>
-<% @recipes.each do |recipe| %>
+<section class='top-user'>
+  <!-- <h1 class='app-title'>Mise En App!</h1> -->
+  <img src="<%= asset_path( 'main-logo.jpg' ) %>" class='app-title' />
+  <%= form_for recipes_path, :html => { :id => 'form', :class=> 'inline searchform' }, :method => 'get' do %>
+    <div class='search'> <%= text_field_tag :search, params[:search] %>
+      <div class='submit'><%= image_submit_tag("search.png", :name => nil, :class => 'submit') %></div>
+    </div>
+  <% end %> 
+  <br>
+  <%= link_to( "Mise En App!", user_path(@current_user), :class => 'taskbar')%> <%= link_to( "Submit a recipe!", recipes_path, :class => 'taskbar' )%> <%= link_to( "Log out", session_path("current"), method: :delete, :class => 'taskbar' )%> 
+</section>
 
-  <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
-  <ul> Intended Serving: <%=recipe.serving %></ul>
-  <%= image_tag recipe.photo.url(:med) %>
+<section class='container'>
+  <% @recipes.each do |recipe| %>
+    <div class='recipe-preview'>
+      <%= link_to( image_tag(recipe.photo.url(:large), :class => 'image-preview'), recipe_path(recipe)) %>
+      <h2 class='title preview'><%= link_to recipe.title, recipe_path(recipe) %></h2>
+      <ul> <em> Intended Serving|Yield: </em> <%=recipe.serving %></ul>
+    </div>
+  <% end %>
+</section>
 
-  <h3>Ingredients</h3>
-
-  <% recipe.ingredients.each do |ingredient| %>
-    <ul contenteditable="true"> 
-      <% for amount in ingredient.amounts %>
-        <%= amount.servingsize(params[:serving]) %>
-      <% end %>
-      <%= ingredient.name %>
-    </ul>
-  <%end%>
-
-  <h3>Instructions</h3>
-
-  <ol>
-  <% recipe.steps.each do |step| %>
-    <li contenteditable="true"><%= step.instruction %></li>
-  <%end%>
-  </ol>
-  
-  <hr>
-
-<% end %>

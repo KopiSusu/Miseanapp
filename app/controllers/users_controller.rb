@@ -1,12 +1,17 @@
 class UsersController < ApplicationController
+  before_filter :restrict_access, :except => [:new]
+  
   def index
   end
 
   def show
     @user = User.find(current_user.id)
-    @recipes = @user.recipes.all
+    if params[:search]
+      @recipes = @user.recipes.search(params[:search])
+    else 
+      @recipes = @user.recipes.all
+    end
   end
-
 
   def new
     @user = User.new

@@ -1,3 +1,47 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.wrapper {
+  height: 100%;
+  .devide:first-of-type {
+    width: 22%;
+    border-right: 1px solid #888;
+  }
+  .devide:last-of-type {
+    width: 77%;
+  }
+  .devide {
+    display: inline-block;
+    height: 100%;
+    padding: 4%;
+    padding-top: 0;
+    float: left;
+    height: 100%;
+    padding-bottom: 0;
+    h1 {
+      color: #fff;
+      font-size: 2em;
+      text-shadow:
+        -1px -1px 0 #ef4923,
+        1px -1px 0 #ef4923,
+        -1px 1px 0 #ef4923,
+        1px 1px 0 #ef4923; 
+    }
+    h2 {
+      color: #8BC13F;
+    }
+    .examples {
+      width: 100%;
+      display: inline-block;
+      img {
+        width: 100%;
+      }
+    }
+    .inside {
+      -moz-column-count: 2;
+      -webkit-column-count: 2;
+      column-count: 2;
+    }
+  }
+}

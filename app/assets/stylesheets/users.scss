@@ -1,3 +1,81 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.top-user {  
+  width: 80%;
+  margin-left: 10%;
+  .app-title {
+    margin-bottom: 1%;
+    margin-top: 2%;
+  }
+  .taskbar {
+    color: #333;
+    font-size: 1.5em;
+    margin-left: 2%;
+  }
+  .taskbar:first-of-type
+  {
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-left: 0%;
+  }
+  .searchform {
+    float: right;
+    margin: 7% -8% 0%;
+    width: 30%;
+    input {
+      width: 90%;
+    }
+    .search {
+      width: 90%;
+      .submit {
+        width: 36%;
+        display: inline-block;
+        float: right;
+        margin-top: -9%;
+        margin-right: -3%;
+      }
+    }
+  }
+
+}
+
+.container {
+  -moz-column-count: 3;
+  -webkit-column-count: 3;
+  column-count: 3;
+  width: 100%;
+  padding: 1%;
+  .recipe-preview {
+    display: inline-block;
+    width: 97%;
+    box-shadow: 0 5px 20px -7px #777;
+    margin: 2%;
+    background: #fafafa;
+    .preview {
+      font-size: 1.3em;
+      width: 65%;
+      margin-left: 17.5%;
+      background: #83B838;
+      border: none;
+      line-height: 150%;
+      a {
+        color: #fafafa;
+        text-decoration: none;
+      }
+    } 
+    .image-preview {
+      width: 100%;
+      text-align: center;
+      display:block;
+      margin: auto;
+      margin-bottom: 6%
+    }
+    ul {
+      color: #999;
+      padding-left: 8%;
+    }
+  }
+}
+
+
