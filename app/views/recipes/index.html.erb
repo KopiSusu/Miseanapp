@@ -7,7 +7,7 @@
         <p><%= text_field_tag :url, nil, placeholder: "Paste recipe URL here!" %></p>
     <% end %> 
     <div class='lower-links'>
-      <p><a class='recipe-submit'>Submit recipe!</a></p>
+      <p><a href="javascript:{}" onclick="document.getElementById('form').submit();">Submit recipe!</a></p>
       <p><%= link_to "Make your own recipe!", new_recipe_path %></p>
       <p><%= link_to "Your recipes!", user_path(current_user.id) %></p>
     </div>

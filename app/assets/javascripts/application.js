@@ -39,10 +39,5 @@ $(document).ready(function() {
     event.preventDefault();
   });
 
-  $('.recipe-submit').click(function () {
-      $('#form').submit();
-  });
-  // $(".recipe-preview").css( "height", function(v){
-  //   return Math.random() * 250 + 100 | 0 
-  // });
 });
+
