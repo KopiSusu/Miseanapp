@@ -1,3 +1,5 @@
-<p class='fields inline amount'>
-  <%= f.number_field :quantity, :class => 'input-amount inline' %>
-</p>
+<div class='fields'>
+  Amount: <%= f.number_field :quantity %>
+  <%= link_to_remove_fields "remove", f %>
+</div>
+<br>

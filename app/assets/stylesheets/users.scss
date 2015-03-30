@@ -2,26 +2,32 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .top-user {  
-  width: 80%;
-  margin-left: 10%;
+  width: 100%;
+  /*background-image: image-url("horizontal_background.jpg");*/
   .app-title {
-    margin-bottom: 1%;
-    margin-top: 2%;
+    margin: 2% 2% 1%;
   }
-  .taskbar {
-    color: #333;
-    font-size: 1.5em;
-    margin-left: 2%;
-  }
-  .taskbar:first-of-type
-  {
-    font-size: 1.6em;
-    font-weight: bold;
-    margin-left: 0%;
+  .navbar {
+    /*background: #ef4923;*/
+    padding: 0.5% 5%;
+    box-shadow: 0 5px 20px -7px #333;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    .taskbar {
+      color: #333;
+      font-size: 1.5em;
+      margin-left: 2%;
+    }
+    .taskbar:first-of-type
+    {
+      font-size: 1.6em;
+      font-weight: bold;
+      margin-left: 0%;
+    }
   }
   .searchform {
     float: right;
-    margin: 7% -8% 0%;
+    margin: 7% 0% 0%;
     width: 30%;
     input {
       width: 90%;

@@ -35,6 +35,10 @@ input, textarea {
   font: 15px/1.8 'PT Sans', Arial, sans-serif;
 }
 
+textarea {
+  width: 75%;
+}
+
 .inline {
   display: inline-block;
 }

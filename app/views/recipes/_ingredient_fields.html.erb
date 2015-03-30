@@ -1,15 +1,12 @@
-<ul class="fields">  
-  <p class='add inline'><%= link_to_add_fields "+", f, :amounts %></p>
+<div class="fields">  
+  <div>
+    Ingredient:<br>
+    <%= f.text_field :name %>
+    <%= link_to_remove_fields "remove", f %>
+  </div>
 
   <%= f.fields_for :amounts do |builder| %>
-    <p class='fields inline amount'>
-      <%= builder.number_field :quantity, :class => 'input-amount inline' %>
-    </p>
+    <%= render "amount_fields", :f => builder %>
   <% end %>
-
-
-
-  <%= f.text_field :name, :class => 'input-ingredient inline' %>
-
-
-</ul>
+  <p><%= link_to_add_fields "Add Amount", f, :amounts %></p>
+</div>

@@ -7,7 +7,9 @@
     </div>
   <% end %> 
   <br>
-  <%= link_to( "Mise En App!", user_path(@current_user), :class => 'taskbar')%> <%= link_to( "Submit a recipe!", recipes_path, :class => 'taskbar' )%> <%= link_to( "Log out", session_path("current"), method: :delete, :class => 'taskbar' )%> 
+  <div class='navbar'>
+    <%= link_to( "Mise En App!", user_path(@current_user), :class => 'taskbar')%> <%= link_to( "Submit a recipe!", recipes_path, :class => 'taskbar' )%> <%= link_to( "Log out", session_path("current"), method: :delete, :class => 'taskbar' )%> 
+  </div>
 </section>
 
 <section class='container'>

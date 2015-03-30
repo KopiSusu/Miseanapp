@@ -1,42 +1,44 @@
 <%= form_for @recipe, :html => { :multipart => true } do |f| %>
-
-  <div class='title_input'>
-    Title: <br>
-    <%= f.text_field :title, :class => 'title'%>
+  <div class="inline">
+    Title:<br>
+    <%= f.text_field :title %>
   </div>
-  
-  <section class='wrap'>
-    Photo:<br>
-    <% if @file_found == true %>
-      <%= image_tag @recipe.photo.url(:med), :class => "image" %> <br>
-      Replace Image: <%= f.file_field :photo %>
-    <% else %>
-      <%= f.file_field :photo %>
-    <% end %>
+  <div class="inline">
+    Serving:<br>
+    <%= f.number_field :serving %>
+  </div>
+  <div class="inline">
+    <%= link_to "Back to your recipes", user_path(current_user.id) %>
+  </div>
+  <br>
+  <hr>
 
-    <h3>Instructions</h3>
+  <div class='wrap'>
+    <h2> Ingredients </h2>
+      Photo:<br>
+      <% if @file_found == true %>
+        <%= image_tag @recipe.photo.url(:med)%> <br>
+        Replace Image: <%= f.file_field :photo %>
+      <% else %>
+        <%= f.file_field :photo %>
+      <% end %>
+
+    <br>
+    <hr>
+
+    <%= f.fields_for :ingredients do |builder| %>
+      <%= render "ingredient_fields", :f => builder %>
+    <% end %>
+    <p><%= link_to_add_fields "Add Ingredient", f, :ingredients %></p>
+  </div>
+
+  <div class='wrap'>
+    <h2> Instructions </h2>
     <%= f.fields_for :steps do |builder| %>
       <%= render "step_fields", :f => builder %>
     <% end %>
     <p><%= link_to_add_fields "Add Step", f, :steps %></p>
-  </section>
 
-  <section class='wrap'>
-  
-    <h3 class='inline'>Ingredients</h3> 
-    <ul class='inline'>
-      <em>Serving:</em> <%= f.number_field :serving %>
-    </ul>
-
-  <hr>
-      <%= f.fields_for :ingredients do |builder| %>
-        <%= render "ingredient_fields", :f => builder %>
-      <% end %>
-      <p><%= link_to_add_fields "Add Ingredient", f, :ingredients %></p>
-  </section>
-
-
-  <div>
     <%= f.submit :Submit %> 
   </div>
 

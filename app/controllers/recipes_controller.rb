@@ -71,7 +71,7 @@ class RecipesController < ApplicationController
       end
       @recipe.user_id = current_user.id
       @recipe.save
-      redirect_to edit_recipe_path(@recipe.id)
+      redirect_to recipe_path(@recipe.id)
     else
       @recipe = Recipe.new(recipe_params)
       if @recipe.save
