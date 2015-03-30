@@ -1,6 +1,6 @@
-class UsersController < ApplicationController
-  before_filter :restrict_access, :except => [:new]
-  
+class UsersController < ApplicationController  
+  before_filter :restrict_access, :only => [:show]
+
   def index
   end
 
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      session[:user_id] = @user.id # auto log in
+      session[:user_id] = @user.id
       redirect_to recipes_path
     else
       render :new
@@ -38,3 +38,4 @@ class UsersController < ApplicationController
   end
   
 end
+
